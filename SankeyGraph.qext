@@ -1,0 +1,11 @@
+{
+    "name" : "Sankey Graph",
+    "description" : "SankeyBased On D3 Library",
+    "icon" : "pie-chart",
+    "type" : "visualization",
+    "version": "1.0.0",
+    "preview" : "pie-chart",
+    "author": "Ruben Albuquerque"
+}
+
+
