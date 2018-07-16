@@ -128,6 +128,20 @@ define( [
 			defaultValue: 8
 	};		
 
+	
+	messages[language].CHART_HEIGHT = "Altura";
+	var chartHeight = {
+			type: "integer",
+			label: messages[language].CHART_HEIGHT,
+			ref: "height",
+			component: "slider",
+			min: 1,
+			max: 20,
+			step: 0.25,			
+			//expression: "always",
+			defaultValue: 8
+	};		
+	
 	messages[language].MAX_TEXT_SIZE =  "Tamanho Máximo Texto";
 	var maxTextSize = {
 			type: "integer",
@@ -147,12 +161,25 @@ define( [
 			label: messages[language].POS_X,
 			ref: "posX",
 			component: "slider",
-			min: -20,
+			min: -100,
 			max: 200,
 			step: 0.5,			
 			//expression: "always",
 			defaultValue: 0
-	};		
+	};	
+
+	messages[language].POS_Y =  "Posição Vertical";
+	var posY = {
+			type: "integer",
+			label: messages[language].POS_Y,
+			ref: "posY",
+			component: "slider",
+			min: -60,
+			max: 200,
+			step: 0.5,			
+			//expression: "always",
+			defaultValue: 0
+	};	
 	
 	messages[language].SPACE_LABEL_RIGHT =  "Espaço Label Direita";
 	var spaceLabelRight = {
@@ -170,7 +197,7 @@ define( [
 	messages[language].SPACE_LABEL_LEFT =  "Espaço Label Esquerda";
 	var spaceLabelLeft = {
 			type: "integer",
-			label: messages[language].LEFT,
+			label: messages[language].SPACE_LABEL_LEFT,
 			ref: "spaceLabelLeft",
 			component: "slider",
 			min: 0,
@@ -181,6 +208,19 @@ define( [
 	};	
 	
 	
+	messages[language].PAD =  "Espaçamento";
+	var pad = {
+			type: "integer",
+			label: messages[language].PAD,
+			ref: "pad",
+			component: "slider",
+			min: 0,
+			max: 10,
+			step: 0.5,			
+			//expression: "always",
+			defaultValue: 2
+	};	
+		
 	
 	messages[language].ANALOGUE1 =  "Análogas 1";
 	messages[language].ANALOGUE2 =  "Análogas 2";
@@ -423,9 +463,12 @@ define( [
 		items: {			
 			chartType:chartType,
 			chartWidth:chartWidth,
+			chartHeight:chartHeight,
 			posX:posX,
+			posY:posY,
 			edgeMode:edgeMode,
 			barSize:barSize,
+			pad:pad,
 			fontSizeLabel:fontSizeLabel,
 			spaceLabelLeft:spaceLabelLeft,
 			spaceLabelRight:spaceLabelRight,			

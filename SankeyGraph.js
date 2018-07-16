@@ -102,7 +102,9 @@ define( [
 			 function paintAll($element,layout,qMatrix)
 			 {
 				
-				layout.spaceLabelLeft
+				if(typeof(layout.pad) == "undefined"){
+						layout.pad=3;
+				}
 				if(typeof(layout.spaceLabelLeft) == "undefined"){
 						layout.spaceLabelLeft=2;
 				}
@@ -111,6 +113,15 @@ define( [
 				}
 				if(typeof(layout.posX) == "undefined"){
 						layout.posX=0;
+				}
+				if(typeof(layout.width) == "undefined"){
+						layout.width=8;
+				}
+				if(typeof(layout.height) == "undefined"){
+						layout.height=8;
+				}					
+				if(typeof(layout.posY) == "undefined"){
+						layout.posY=0;
 				}				
 				if(typeof(layout.labelIn) == "undefined"){
 						layout.labelIn="out";
@@ -634,16 +645,16 @@ define( [
 					orient="horizontal";
 				if(!chord){
 					if(orient=="vertical")						
-						var g =[svg.append("g").attr("transform","translate("+(90+layout.posX)+",50)")
+						var g =[svg.append("g").attr("transform","translate("+(90+layout.posX)+","+(50+layout.posY)+")")
 									//,svg.append("g").attr("transform","translate(650,100)")
 									];
 					else
-						var g =[svg.append("g").attr("transform","translate("+(60+layout.posX)+",20)")
+						var g =[svg.append("g").attr("transform","translate("+(60+layout.posX)+","+(20+layout.posY)+")")
 									//,svg.append("g").attr("transform","translate(650,100)")
 									];
 				}
 				else
-					var g =[svg.append("g").attr("transform","translate("+(300+layout.posX)+",250)")
+					var g =[svg.append("g").attr("transform","translate("+(300+layout.posX)+","+(250+layout.posY)+")")
 								//,svg.append("g").attr("transform","translate(650,100)")
 								];	
 				
@@ -651,16 +662,21 @@ define( [
 					var edgeMode = "curved";
 					
 					var fWidth = layout.width/10;
+					var fHeight = layout.height/10;
+					
+					
 					
 					if(layout.edgeMode=="straight")
 						edgeMode="straight";
 					if(orient=="vertical"){
 						var bpWidth=width*fWidth;
+						var bpHeight=height*fHeight;
 						var  barSize=0.12*width ;
 					}
 					else{
 						fWidth=fWidth+0.1;
 						var bpWidth=width*fWidth;
+						var bpHeight=height*fHeight;
 						var barSize=0.12*height;
 					}
 					
@@ -670,8 +686,8 @@ define( [
 					var bp=[ viz().biPartite()
 							.data(data)
 							.min(12)
-							.pad(5)
-							.height(height*0.8)
+							.pad(layout.pad)
+							.height(bpHeight)
 							//.width(width*0.6)
 							//.width(bpWidth)
 							.width(bpWidth)
@@ -748,7 +764,7 @@ define( [
 							//.attr("x",d=>(d.part=="primary"? -100: 80))
 							//.attr("y",d=>+6)
 							.attr("y",function(d){return yUp})
-							.attr("x",function(d){console.log(d.key.length); return (d.part=="primary"? -xUpL-fatorAfastamentoL: xUpR+fatorAfastamentoR)})
+							.attr("x",function(d){/*console.log(d.key.length);*/ return (d.part=="primary"? -xUpL-fatorAfastamentoL: xUpR+fatorAfastamentoR)})
 							.text(function(d){ return d.key/*d3.format("0.0%")(d.percent)*/}).style("font",fontLabel).style("font-weight",layout.bold)
 							.style("fill",layout.fontColor.color)
 							//.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
